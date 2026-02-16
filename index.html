@@ -1,20 +1,481 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resul'ün Sitesi</title>
-<style>
-body{margin:0;font-family:Arial;background:#0f172a;color:#fff;text-align:center}
-.box{padding:80px 20px}
-h1{font-size:40px}
-p{opacity:.8}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resul Media • Sosyal Medya Hizmetleri & Analiz</title>
+  <meta name="description" content="Sosyal medya yönetimi, içerik üretimi, video edit ve analiz raporu." />
+  <style>
+    :root{
+      --bg:#070A13;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.04);
+      --line:rgba(255,255,255,.12);
+      --txt:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --shadow: 0 20px 80px rgba(0,0,0,.45);
+      --r:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--txt);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,.40), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(16,185,129,.26), transparent 60%),
+        radial-gradient(900px 600px at 50% 95%, rgba(236,72,153,.18), transparent 60%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1120px; margin:0 auto; padding:24px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 14px; border:1px solid var(--line); background:var(--panel);
+      border-radius:999px; backdrop-filter: blur(10px); box-shadow: var(--shadow);
+      position: sticky; top:16px; z-index:10;
+    }
+    .brand{display:flex; gap:10px; align-items:center; font-weight:900; letter-spacing:.2px}
+    .dot{width:10px; height:10px; border-radius:999px; background: linear-gradient(135deg,#a78bfa,#34d399)}
+    .links{display:flex; gap:10px; align-items:center; font-size:14px; color:var(--muted); flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      padding:10px 12px; border-radius:999px; border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      display:inline-flex; align-items:center; gap:8px;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .pill:hover{background:rgba(255,255,255,.08); transform: translateY(-1px)}
+    .hero{padding:70px 0 20px; display:grid; gap:18px}
+    h1{
+      margin:0;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height:1.03;
+      letter-spacing:-1px;
+    }
+    .sub{margin:0; color:var(--muted); max-width:70ch; font-size: clamp(15px, 2.2vw, 18px); line-height:1.6}
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    .badge{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+    }
+    .ctaRow{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:8px}
+    .btn{
+      border:1px solid var(--line); background:rgba(255,255,255,.06);
+      padding:12px 16px; border-radius:14px; font-weight:800;
+      display:inline-flex; gap:10px; align-items:center;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg,#7c3aed,#22c55e);
+      color:#0b1220;
+      box-shadow: 0 18px 60px rgba(124,58,237,.25);
+    }
+    .btn:hover{transform: translateY(-1px); filter:brightness(1.05)}
+    .grid{display:grid; gap:14px; grid-template-columns: 1.25fr .75fr; margin:26px 0 10px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} .links{justify-content:center} }
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--r);
+      padding:18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{margin:0 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted); line-height:1.6}
+    .list{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px; border-radius:16px; border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+    .ico{
+      width:34px; height:34px; border-radius:12px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      display:flex; align-items:center; justify-content:center;
+      flex:0 0 auto;
+    }
+    .li b{display:block; margin-bottom:2px}
+    section{padding:26px 0}
+    .secTitle{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:12px}
+    .secTitle h2{margin:0; font-size:20px}
+    .secTitle span{color:var(--muted); font-size:14px}
+    .cols{display:grid; gap:14px; grid-template-columns: 1fr 1fr 1fr}
+    @media (max-width: 950px){ .cols{grid-template-columns:1fr} }
+    .price{
+      display:flex; flex-direction:column; gap:10px;
+      padding:18px; border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+    .price .tag{font-size:12px; color:rgba(255,255,255,.78)}
+    .price .amt{font-size:22px; font-weight:900}
+    .price ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.7}
+    .mini{font-size:13px; color:var(--muted)}
+    .hr{height:1px; background:var(--line); margin:14px 0}
+    .inputRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    input{
+      flex:1 1 220px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      color:var(--txt);
+      outline:none;
+    }
+    input::placeholder{color:rgba(255,255,255,.45)}
+    .chart{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap:8px;
+      align-items:end;
+      height:120px;
+      margin-top:12px;
+    }
+    .bar{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(124,58,237,.55), rgba(34,197,94,.40));
+      border-radius:14px;
+      height:40%;
+      position:relative;
+      overflow:hidden;
+    }
+    .bar::after{
+      content:"";
+      position:absolute; inset:-30% -30%;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.25), transparent 55%);
+      transform: rotate(12deg);
+    }
+    .barLabel{display:flex; justify-content:space-between; margin-top:10px; color:var(--muted); font-size:12px}
+    .footer{
+      padding:26px 0 36px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .toast{
+      position: fixed; left:50%; bottom:18px; transform: translateX(-50%);
+      background: rgba(0,0,0,.55);
+      border:1px solid var(--line);
+      padding:12px 14px;
+      border-radius:999px;
+      color:rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      display:none;
+      max-width:92vw;
+    }
+  </style>
 </head>
+
 <body>
-<div class="box">
-<h1>Resul'ün Kalıcı Web Sitesi</h1>
-<p>Site başarıyla kuruldu 🎉</p>
-</div>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Resul Media</span>
+      </div>
+      <div class="links">
+        <a class="pill" href="#hizmetler">Hizmetler</a>
+        <a class="pill" href="#analiz">Analiz</a>
+        <a class="pill" href="#paketler">Paketler</a>
+        <a class="pill" href="#iletisim">İletişim</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <h1>Sosyal medya büyütme<br/>ve analiz hizmetleri</h1>
+      <p class="sub">
+        Reels/TikTok video edit, içerik planı, sayfa düzenleme ve performans raporu.
+        Hızlı, şeffaf ve sürdürülebilir büyüme için “sistem” kurarız.
+      </p>
+
+      <div class="badges">
+        <span class="badge">📱 Telefon uyumlu</span>
+        <span class="badge">⚡ Hızlı teslim</span>
+        <span class="badge">📊 Aylık rapor</span>
+        <span class="badge">✅ Yasal & güvenli</span>
+      </div>
+
+      <div class="ctaRow">
+        <a class="btn primary" href="#iletisim">WhatsApp ile yaz</a>
+        <a class="btn" href="#analiz">Demo analiz gör</a>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Ne yapıyoruz?</h2>
+          <p>
+            Hesabını “güzel görünüm + doğru içerik + düzenli paylaşım + ölçüm” ile büyütürüz.
+            Böylece keşfet ve önerilenlerde daha çok görünürsün.
+          </p>
+
+          <ul class="list" style="margin-top:14px">
+            <li class="li">
+              <div class="ico">🎬</div>
+              <div>
+                <b>Video Edit (Reels/TikTok)</b>
+                <div class="mini">Kısa, hızlı, trend odaklı montaj + altyazı.</div>
+              </div>
+            </li>
+            <li class="li">
+              <div class="ico">🧠</div>
+              <div>
+                <b>İçerik Planı</b>
+                <div class="mini">30 günlük konu listesi + paylaşım saatleri.</div>
+              </div>
+            </li>
+            <li class="li">
+              <div class="ico">📈</div>
+              <div>
+                <b>Analiz & Rapor</b>
+                <div class="mini">Takipçi, erişim, etkileşim trendleri.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Hızlı başlangıç</h2>
+          <p>3 bilgiyle hemen plan çıkaralım:</p>
+          <div class="hr"></div>
+          <p class="mini">1) Nişin ne? (ör: futbol, butik, oyun, kişisel)</p>
+          <p class="mini">2) Hedefin? (takipçi, satış, marka)</p>
+          <p class="mini">3) Haftada kaç paylaşım istiyorsun?</p>
+          <div class="hr"></div>
+          <a class="btn primary" href="#iletisim">Bilgileri yaz</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="hizmetler">
+      <div class="secTitle">
+        <h2>Hizmetler</h2>
+        <span>İstersen sadece 1 hizmet, istersen paket</span>
+      </div>
+
+      <div class="cols">
+        <div class="card">
+          <h2>🎬 Video Edit</h2>
+          <p>Reels/TikTok için hızlı montaj, altyazı, tempo, kapak. Trend odaklı.</p>
+          <div class="hr"></div>
+          <p class="mini">Teslim: 24–72 saat (yoğunluğa göre)</p>
+        </div>
+
+        <div class="card">
+          <h2>🗓️ İçerik Planı</h2>
+          <p>30 günlük içerik fikri + paylaşım takvimi + seri formatları (bölüm bölüm).</p>
+          <div class="hr"></div>
+          <p class="mini">Hedef: düzen + istikrar + keşfet</p>
+        </div>
+
+        <div class="card">
+          <h2>📊 Analiz & Rapor</h2>
+          <p>Haftalık/aylık rapor: erişim, etkileşim, en iyi içerikler ve öneriler.</p>
+          <div class="hr"></div>
+          <p class="mini">Net sonuç: ne işe yarıyor, ne yaramıyor</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="analiz">
+      <div class="secTitle">
+        <h2>Demo Analiz Paneli</h2>
+        <span>Bu demo — gerçek veri için resmi analiz/rapor çalışması yaparız</span>
+      </div>
+
+      <div class="card">
+        <p class="mini" style="margin:0 0 10px">
+          Kullanıcı adı yaz, demo verilerle örnek rapor gösterelim:
+        </p>
+        <div class="inputRow">
+          <input id="username" placeholder="@kullaniciadi (ör: resul2147)" />
+          <button class="btn primary" id="runBtn" type="button">Analiz Et</button>
+          <button class="btn" id="resetBtn" type="button">Sıfırla</button>
+        </div>
+
+        <div class="hr"></div>
+
+        <div style="display:grid; gap:14px; grid-template-columns: 1fr 1fr 1fr; align-items:stretch">
+          <div class="card" style="padding:14px">
+            <div class="mini">Takipçi</div>
+            <div class="amt" id="followers" style="font-weight:900; font-size:26px">—</div>
+            <div class="mini" id="fDelta">—</div>
+          </div>
+          <div class="card" style="padding:14px">
+            <div class="mini">Erişim (7 gün)</div>
+            <div class="amt" id="reach" style="font-weight:900; font-size:26px">—</div>
+            <div class="mini" id="rDelta">—</div>
+          </div>
+          <div class="card" style="padding:14px">
+            <div class="mini">Etkileşim (7 gün)</div>
+            <div class="amt" id="eng" style="font-weight:900; font-size:26px">—</div>
+            <div class="mini" id="eDelta">—</div>
+          </div>
+        </div>
+
+        <div class="chart" id="chart">
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar" style="height:62%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar" style="height:78%"></div>
+        </div>
+        <div class="barLabel">
+          <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+        </div>
+
+        <p class="mini" style="margin-top:12px">
+          İstersen bu paneli “gerçek veriye” bağlamak için resmi analiz/rapor altyapısı kurarız.
+        </p>
+      </div>
+    </section>
+
+    <section id="paketler">
+      <div class="secTitle">
+        <h2>Paket Örnekleri</h2>
+        <span>Fiyatları istersen sonra birlikte netleştiririz</span>
+      </div>
+
+      <div class="cols">
+        <div class="price">
+          <div class="tag">Başlangıç</div>
+          <div class="amt">Haftalık Düzen</div>
+          <ul>
+            <li>İçerik planı (7 gün)</li>
+            <li>Profil düzen önerileri</li>
+            <li>1 mini analiz raporu</li>
+          </ul>
+          <div class="mini">Küçük hesaplar için iyi başlangıç.</div>
+        </div>
+
+        <div class="price">
+          <div class="tag">Popüler</div>
+          <div class="amt">Aylık Yönetim</div>
+          <ul>
+            <li>30 gün içerik planı</li>
+            <li>Haftalık kontrol & optimizasyon</li>
+            <li>Aylık detaylı rapor</li>
+          </ul>
+          <div class="mini">Düzenli büyüme isteyenler.</div>
+        </div>
+
+        <div class="price">
+          <div class="tag">Pro</div>
+          <div class="amt">Video + Yönetim</div>
+          <ul>
+            <li>Reels/TikTok edit paketi</li>
+            <li>Kapak tasarımları</li>
+            <li>Rapor + strateji görüşmesi</li>
+          </ul>
+          <div class="mini">En hızlı ivme için.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="secTitle">
+        <h2>İletişim</h2>
+        <span>Bağlantıları kendine göre değiştir</span>
+      </div>
+
+      <div class="card">
+        <p class="sub" style="margin:0 0 10px">
+          Mesaj at — hedefini söyle, ben sana plan çıkarayım.
+        </p>
+        <div class="ctaRow">
+          <!-- WhatsApp numaranı 90xxxxxxxxxx formatında yaz (başında + yok) -->
+          <a class="btn primary" id="waLink" href="https://wa.me/90XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+
+          <!-- Instagram kullanıcı adını değiştir -->
+          <a class="btn" href="https://instagram.com/resul._.lax.q" target="_blank" rel="noopener">Instagram</a>
+
+          <!-- Email değiştir -->
+          <a class="btn" href="mailto:mailin@ornek.com">E-posta</a>
+        </div>
+
+        <div class="hr"></div>
+        <p class="mini">
+          Not: “Takipçi/hesap satışı” gibi kurallara aykırı işlere girmeden, uzun ömürlü ve güvenli büyüme hedefliyoruz.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="y"></span> Resul Media • Tüm hakları saklıdır
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Kaydedildi</div>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+
+    function rand(min, max){ return Math.floor(Math.random()*(max-min+1))+min; }
+    function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+    function toast(msg){
+      const t = $("toast");
+      t.textContent = msg;
+      t.style.display = "block";
+      clearTimeout(window.__t);
+      window.__t = setTimeout(()=> t.style.display="none", 1600);
+    }
+
+    function runDemo(){
+      const u = $("username").value.trim();
+      const seed = u.length ? u.length * 97 : 333;
+
+      // demo metrikler (gerçek veri değil)
+      const followers = rand(1200+seed, 24000+seed*4);
+      const reach = rand(8000+seed*2, 120000+seed*6);
+      const eng = rand(900+seed, 18000+seed*3);
+
+      const fDelta = rand(-20, 240);
+      const rDelta = rand(-10, 65);
+      const eDelta = rand(-10, 55);
+
+      $("followers").textContent = fmt(followers);
+      $("reach").textContent = fmt(reach);
+      $("eng").textContent = fmt(eng);
+
+      $("fDelta").textContent = (fDelta>=0? "▲ +" : "▼ ") + fDelta + " (7 gün)";
+      $("rDelta").textContent = (rDelta>=0? "▲ +" : "▼ ") + rDelta + "% (7 gün)";
+      $("eDelta").textContent = (eDelta>=0? "▲ +" : "▼ ") + eDelta + "% (7 gün)";
+
+      // chart bars
+      const bars = $("chart").querySelectorAll(".bar");
+      bars.forEach((b,i)=>{
+        const h = rand(30, 88);
+        b.style.height = h + "%";
+      });
+
+      toast(u ? ("@" + u.replace("@","") + " için demo hazır") : "Demo analiz hazır");
+    }
+
+    $("runBtn").addEventListener("click", runDemo);
+    $("resetBtn").addEventListener("click", ()=>{
+      $("username").value = "";
+      $("followers").textContent = "—";
+      $("reach").textContent = "—";
+      $("eng").textContent = "—";
+      $("fDelta").textContent = "—";
+      $("rDelta").textContent = "—";
+      $("eDelta").textContent = "—";
+      toast("Sıfırlandı");
+    });
+
+    $("y").textContent = new Date().getFullYear();
+
+    // Enter ile çalıştır
+    $("username").addEventListener("keydown",(e)=>{
+      if(e.key === "Enter") runDemo();
+    });
+  </script>
 </body>
-</html>
+          </html>
