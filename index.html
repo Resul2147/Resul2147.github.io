@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resul Media | Sosyal Medya Hizmetleri</title>
-  <meta name="description" content="İçerik planı, video edit, sosyal medya danışmanlığı ve analiz raporu." />
+  <meta name="description" content="Video edit, içerik planı, danışmanlık, reklam yönetimi ve aylık analiz raporu. WhatsApp'tan hızlı teklif." />
 
   <style>
     :root{
@@ -16,10 +16,12 @@
       --muted:rgba(255,255,255,.72);
       --accent:#25D366;
       --accent2:#4f7cff;
+      --danger:#ff3b6b;
       --r:22px;
       --shadow:0 18px 60px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0; color:var(--txt);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -31,7 +33,7 @@
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:1080px; margin:0 auto; padding:24px}
+    .wrap{max-width:1120px; margin:0 auto; padding:24px}
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       padding:12px 14px; border:1px solid var(--line);
@@ -43,35 +45,181 @@
       background:linear-gradient(135deg, var(--accent2), #ff3d9a);
       box-shadow:0 0 0 6px rgba(79,124,255,.15);
     }
-    .links{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    .links{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
     .pill{
       padding:8px 12px; border-radius:999px;
       background:var(--card2); border:1px solid var(--line);
-      font-size:14px; opacity:.9;
+      font-size:14px; opacity:.92;
     }
     .pill:hover{opacity:1}
     .hero{
-      padding:54px 0 18px;
+      padding:56px 0 18px;
       display:grid; gap:18px;
     }
-    h1{margin:0; font-size:40px; line-height:1.1}
-    .sub{max-width:60ch; color:var(--muted); font-size:16px; line-height:1.6}
+    .badge{
+      display:inline-flex; gap:10px; align-items:center; width:max-content;
+      padding:10px 12px; border-radius:999px;
+      border:1px solid rgba(79,124,255,.35);
+      background:rgba(79,124,255,.12);
+      color:rgba(255,255,255,.9);
+      font-weight:800; font-size:13px;
+    }
+    .badge .spark{filter:drop-shadow(0 8px 18px rgba(79,124,255,.35))}
+    h1{margin:0; font-size:40px; line-height:1.07; letter-spacing:-.5px}
+    .sub{max-width:70ch; color:var(--muted); font-size:16px; line-height:1.65}
     .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
     .btn{
-      border:0; cursor:pointer; font-weight:800;
+      border:0; cursor:pointer; font-weight:900;
       padding:12px 16px; border-radius:14px;
       background:var(--card); color:var(--txt);
       border:1px solid var(--line);
       box-shadow:0 10px 30px rgba(0,0,0,.20);
+      transition: transform .08s ease, filter .12s ease, opacity .12s ease;
     }
+    .btn:hover{filter:brightness(1.06)}
+    .btn:active{transform:translateY(1px)}
     .btn.primary{
       background:linear-gradient(135deg, var(--accent), #10b981);
-      color:#07210f; border:0;
+      color:#05210f; border:0;
     }
     .btn.secondary{
       background:linear-gradient(135deg, var(--accent2), #9b5cff);
       color:#0c0b18; border:0;
     }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .card{
+      grid-column:span 12;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+    @media (min-width: 900px){
+      h1{font-size:58px}
+      .card.half{grid-column:span 6}
+      .card.third{grid-column:span 4}
+    }
+    .kpi{display:flex; gap:14px; flex-wrap:wrap}
+    .kpi b{font-size:18px}
+    .kpi .mini{color:var(--muted); font-size:13px}
+    .secTitle{margin:28px 0 10px}
+    .secTitle h2{margin:0; font-size:22px}
+    .secTitle span{color:var(--muted); font-size:14px}
+
+    .cols{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+    .price{
+      grid-column:span 12;
+      padding:18px;
+      border-radius:var(--r);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      position:relative;
+      overflow:hidden;
+    }
+    .price::after{
+      content:"";
+      position:absolute; inset:-40px -60px auto auto;
+      width:160px; height:160px;
+      background: radial-gradient(circle at 30% 30%, rgba(37,211,102,.25), transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(79,124,255,.25), transparent 60%);
+      filter: blur(2px);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    @media (min-width: 900px){ .price{grid-column:span 4} }
+    .tag{
+      display:inline-block; padding:6px 10px;
+      border-radius:999px;
+      background:rgba(79,124,255,.18);
+      border:1px solid rgba(79,124,255,.35);
+      font-size:12px; font-weight:900;
+    }
+    .tag.hot{background:rgba(255,61,154,.14); border-color:rgba(255,61,154,.34)}
+    .amt{font-size:22px; font-weight:950; margin:10px 0 4px}
+    .mini{color:var(--muted); font-size:14px}
+    ul{margin:12px 0 0; padding:0 0 0 16px; color:var(--muted); line-height:1.75}
+    .hr{height:1px; background:var(--line); margin:14px 0}
+
+    .inputRow{display:grid; grid-template-columns:1fr; gap:10px}
+    @media (min-width: 900px){ .inputRow{grid-template-columns:1fr 1fr} }
+    input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.22);
+      color:var(--txt);
+      outline:none;
+    }
+    input::placeholder{color:rgba(255,255,255,.55)}
+    .note{color:rgba(255,255,255,.72); font-size:13px; line-height:1.65}
+    .foot{padding:26px 0 54px; color:rgba(255,255,255,.55); font-size:13px}
+
+    /* Modal */
+    .modalBack{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      display:none; align-items:center; justify-content:center;
+      padding:18px;
+      z-index:999;
+    }
+    .modal{
+      width:min(520px, 100%);
+      background:rgba(12,14,26,.92);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:26px;
+      box-shadow:0 30px 120px rgba(0,0,0,.65);
+      padding:16px;
+      backdrop-filter: blur(14px);
+    }
+    .modalTop{display:flex; justify-content:space-between; align-items:center; gap:12px}
+    .modalTop b{font-size:16px}
+    .x{
+      width:38px; height:38px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--txt); cursor:pointer;
+      font-weight:900;
+    }
+    .modalGrid{display:grid; gap:10px; margin-top:10px}
+    .warn{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,59,107,.32);
+      background:rgba(255,59,107,.08);
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .ok{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(37,211,102,.32);
+      background:rgba(37,211,102,.08);
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      line-height:1.55;
+      display:none;
+    }
+    .small{font-size:12px; color:rgba(255,255,255,.68)}
+    .divider{height:1px; background:rgba(255,255,255,.10); margin:10px 0}
+    .panelBox{
+      display:none;
+      padding:12px;
+      border-radius:18px;
+      border:1px solid rgba(79,124,255,.22);
+      background:rgba(79,124,255,.07);
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .panelBox b{color:rgba(255,255,255,.95)}
   </style>
 </head>
 
@@ -80,27 +228,215 @@
     <div class="nav">
       <div class="brand"><span class="dot"></span> Resul Media</div>
       <div class="links">
+        <a class="pill" href="#hizmetler">Hizmetler</a>
         <a class="pill" href="#paketler">Paketler</a>
         <a class="pill" href="#siparis">Sipariş</a>
-        <a class="pill" href="#sss">SSS</a>
+        <button class="pill" style="cursor:pointer" onclick="openLogin()">Panel</button>
       </div>
     </div>
 
     <section class="hero">
-      <h1>Sosyal medya için<br/>hızlı, şık ve sonuç odaklı hizmet.</h1>
+      <div class="badge"><span class="spark">✨</span> Hızlı teklif • Şık tasarım • Sonuç odaklı</div>
+      <h1>Sosyal medya için<br/>premium görünüm + gerçek sonuç.</h1>
       <p class="sub">
-        Video edit, içerik planı, danışmanlık ve analiz raporu. WhatsApp’tan 1 dakikada teklif al.
+        Video edit (Reels/TikTok), içerik planı, reklam yönetimi, danışmanlık ve aylık analiz raporu.
+        <b>WhatsApp’tan 1 dakikada</b> teklif al.
       </p>
       <div class="ctaRow">
-        <button class="btn primary" onclick="goWhatsApp('Merhaba, hizmetler hakkında bilgi almak istiyorum.')">WhatsApp’tan Yaz</button>
+        <button class="btn primary" onclick="goWhatsApp('Merhaba, Resul Media hizmetleri hakkında bilgi ve fiyat almak istiyorum.')">WhatsApp’tan Yaz</button>
+        <a class="btn secondary" href="#paketler">Paketleri Gör</a>
+        <a class="btn" href="#siparis">Hızlı Sipariş</a>
+      </div>
+
+      <div class="grid" id="hizmetler">
+        <div class="card third">
+          <div class="kpi">
+            <div><b>⚡ Hızlı dönüş</b><div class="mini">Genelde aynı gün</div></div>
+          </div>
+        </div>
+        <div class="card third">
+          <div class="kpi">
+            <div><b>🎬 Edit + Kapak</b><div class="mini">Reels/TikTok uyumlu</div></div>
+          </div>
+        </div>
+        <div class="card third">
+          <div class="kpi">
+            <div><b>📊 Aylık rapor</b><div class="mini">Performans + öneri</div></div>
+          </div>
+        </div>
+
+        <div class="card half">
+          <b>Ne yapıyoruz?</b>
+          <div class="mini" style="margin-top:8px">
+            • İçerik planı & konsept • Video edit & altyazı • Kapak tasarım • Reklam yönetimi (Meta) • Hesap optimizasyonu • Analiz/raporlama
+          </div>
+        </div>
+        <div class="card half">
+          <b>Nasıl çalışıyoruz?</b>
+          <div class="mini" style="margin-top:8px">
+            1) WhatsApp’tan ihtiyaç → 2) Örnek/brief → 3) Teslim & revize → 4) Rapor & devam planı
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="paketler">
+      <div class="secTitle">
+        <h2>Paketler</h2>
+        <span>İstediğini seç → otomatik sipariş oluştur</span>
+      </div>
+
+      <div class="cols">
+        <div class="price">
+          <span class="tag">Başlangıç</span>
+          <div class="amt">İçerik Planı (30 Gün)</div>
+          <div class="mini"><b>Fiyat:</b> <span id="p1">₺499</span></div>
+          <ul>
+            <li>30 gün içerik fikri</li>
+            <li>Paylaşım saatleri önerisi</li>
+            <li>Hashtag / format önerisi</li>
+          </ul>
+          <div class="hr"></div>
+          <button class="btn primary" type="button" onclick="pickPack('İçerik Planı (30 Gün)', document.getElementById('p1').textContent)">Sipariş Oluştur</button>
+        </div>
+
+        <div class="price">
+          <span class="tag hot">Popüler</span>
+          <div class="amt">Video Edit Paketi (10 Video)</div>
+          <div class="mini"><b>Fiyat:</b> <span id="p2">₺900</span></div>
+          <ul>
+            <li>10 adet Reels/TikTok edit</li>
+            <li>Altyazı + tempo + kapak</li>
+            <li>Trend format önerisi</li>
+          </ul>
+          <div class="hr"></div>
+          <button class="btn primary" type="button" onclick="pickPack('Video Edit Paketi (10 Video)', document.getElementById('p2').textContent)">Sipariş Oluştur</button>
+        </div>
+
+        <div class="price">
+          <span class="tag">Pro</span>
+          <div class="amt">Aylık Danışmanlık + Rapor</div>
+          <div class="mini"><b>Fiyat:</b> <span id="p3">₺2.499</span></div>
+          <ul>
+            <li>Strateji + optimizasyon</li>
+            <li>Aylık detaylı analiz raporu</li>
+            <li>1 görüşme (30 dk)</li>
+          </ul>
+          <div class="hr"></div>
+          <button class="btn primary" type="button" onclick="pickPack('Aylık Danışmanlık + Rapor', document.getElementById('p3').textContent)">Sipariş Oluştur</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <b>Önemli:</b>
+        <div class="mini" style="margin-top:6px">
+          Bu site <b>gerçek hizmet</b> içindir. Sahte etkileşim / takipçi satışı gibi yanıltıcı işler eklemeyiz.
+        </div>
+      </div>
+    </section>
+
+    <section id="siparis" style="margin-top:22px">
+      <div class="secTitle">
+        <h2>Hızlı Sipariş</h2>
+        <span>Formu doldur → WhatsApp mesajın otomatik hazır olur</span>
+      </div>
+
+      <div class="card">
+        <div class="inputRow">
+          <input id="orderPack" placeholder="Seçilen paket" readonly />
+          <input id="orderPrice" placeholder="Fiyat" readonly />
+        </div>
+
+        <div class="inputRow" style="margin-top:10px">
+          <input id="orderName" placeholder="Ad Soyad" />
+          <input id="orderIg" placeholder="Instagram kullanıcı adın (@...)" />
+        </div>
+
+        <div class="inputRow" style="margin-top:10px">
+          <input id="orderNeed" placeholder="İhtiyaç (ör: futbol reels, hedef: erişim, renk: koyu)" />
+          <input id="orderTime" placeholder="Teslim isteğin (ör: 24 saat)" />
+        </div>
+
+        <div class="ctaRow" style="margin-top:12px">
+          <button class="btn primary" type="button" onclick="sendOrder()">WhatsApp’tan Sipariş Gönder</button>
+          <button class="btn" type="button" onclick="copyOrder()">Mesajı Kopyala</button>
+        </div>
+
+        <div class="hr"></div>
+        <div class="note">
+          İpucu: “Seçilen paket” otomatik dolsun diye yukarıdan bir paket seç.
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" style="margin-top:22px">
+      <div class="secTitle">
+        <h2>SSS</h2>
+        <span>Sık sorulanlar</span>
+      </div>
+      <div class="grid">
+        <div class="card half">
+          <b>Ödeme nasıl?</b>
+          <div class="mini">WhatsApp üzerinden uygun yöntem (IBAN/Papara vb.) paylaşırsın.</div>
+        </div>
+        <div class="card half">
+          <b>Teslim süresi?</b>
+          <div class="mini">Pakete göre değişir. “Teslim isteği” alanına yaz.</div>
+        </div>
+        <div class="card half">
+          <b>Revize var mı?</b>
+          <div class="mini">Evet, pakete göre 1–2 revize.</div>
+        </div>
+        <div class="card half">
+          <b>Panel ne işe yarar?</b>
+          <div class="mini">Sipariş notları ve linkler için “müşteri paneli” görünümü.</div>
+        </div>
       </div>
     </section>
 
     <div class="foot">© <span id="y"></span> Resul Media • GitHub Pages</div>
   </div>
 
+  <!-- PANEL / LOGIN MODAL -->
+  <div class="modalBack" id="mb">
+    <div class="modal">
+      <div class="modalTop">
+        <b>🔐 Müşteri Paneli</b>
+        <button class="x" onclick="closeLogin()">✕</button>
+      </div>
+
+      <div class="modalGrid">
+        <div class="warn">
+          <b>Dikkat:</b> Bu giriş GitHub Pages’te <u>tam güvenli değildir</u> (sadece “panel hissi” verir).
+          Gerçek güvenli giriş istersen Firebase/Supabase ile yaparız.
+        </div>
+
+        <input id="u" placeholder="Kullanıcı adı" />
+        <input id="p" placeholder="Şifre" type="password" />
+        <button class="btn secondary" onclick="tryLogin()">Giriş Yap</button>
+
+        <div class="ok" id="okBox">Giriş başarılı ✅</div>
+        <div class="panelBox" id="panelBox">
+          <b>Panel:</b><br/>
+          • Sipariş linkini WhatsApp’tan aldığın “brief” ile kaydet<br/>
+          • Teslim dosyalarını Drive linkiyle burada tut<br/>
+          • Müşteri notlarını buraya yaz (sonraki sürümde kayıt ekleriz)
+          <div class="divider"></div>
+          <button class="btn primary" onclick="goWhatsApp('Merhaba, panelden yazıyorum. Siparişimle ilgili bilgi almak istiyorum.')">WhatsApp Destek</button>
+          <button class="btn" onclick="logout()">Çıkış</button>
+          <div class="small" style="margin-top:8px">Panel kaydetme özelliği için backend gerekir (istersen ekleriz).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // WhatsApp numaran: +1 (902) 355-8124  -> wa.me formatı: 19023558124
     const WHATSAPP_NUMBER = "19023558124";
+
+    // Basit demo giriş (güvenli değil!)
+    const DEMO_USER = "resul_oztekin";
+    const DEMO_PASS = "353535";
 
     document.getElementById("y").textContent = new Date().getFullYear();
 
@@ -108,6 +444,77 @@
       const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
       window.open(url, "_blank");
     }
+
+    function pickPack(name, price){
+      document.getElementById("orderPack").value = name;
+      document.getElementById("orderPrice").value = price;
+      location.hash = "#siparis";
+    }
+
+    function buildMsg(){
+      const pack = document.getElementById("orderPack").value || "—";
+      const price = document.getElementById("orderPrice").value || "—";
+      const name = document.getElementById("orderName").value || "—";
+      const ig = document.getElementById("orderIg").value || "—";
+      const need = document.getElementById("orderNeed").value || "—";
+      const time = document.getElementById("orderTime").value || "—";
+
+      return (
+        "Merhaba, sipariş vermek istiyorum.\n\n" +
+        "Paket: " + pack + "\n" +
+        "Fiyat: " + price + "\n" +
+        "Ad Soyad: " + name + "\n" +
+        "IG: " + ig + "\n" +
+        "İhtiyaç: " + need + "\n" +
+        "Teslim isteği: " + time + "\n\n" +
+        "Ödeme ve teslim süresini yazar mısınız?"
+      );
+    }
+
+    function sendOrder(){
+      goWhatsApp(buildMsg());
+    }
+
+    async function copyOrder(){
+      try{
+        await navigator.clipboard.writeText(buildMsg());
+        alert("Sipariş mesajı kopyalandı ✅");
+      }catch(e){
+        alert("Kopyalanamadı. WhatsApp butonunu kullanabilirsin.");
+      }
+    }
+
+    // Login modal
+    function openLogin(){
+      document.getElementById("mb").style.display = "flex";
+      document.getElementById("okBox").style.display = "none";
+      document.getElementById("panelBox").style.display = "none";
+    }
+    function closeLogin(){
+      document.getElementById("mb").style.display = "none";
+    }
+    function tryLogin(){
+      const u = (document.getElementById("u").value || "").trim();
+      const p = (document.getElementById("p").value || "").trim();
+      if(u === DEMO_USER && p === DEMO_PASS){
+        localStorage.setItem("panel_ok","1");
+        document.getElementById("okBox").style.display = "block";
+        document.getElementById("panelBox").style.display = "block";
+      }else{
+        alert("Hatalı kullanıcı adı/şifre.");
+      }
+    }
+    function logout(){
+      localStorage.removeItem("panel_ok");
+      document.getElementById("panelBox").style.display = "none";
+      document.getElementById("okBox").style.display = "none";
+      alert("Çıkış yapıldı.");
+    }
+
+    // Sayfa açılınca panel açık kalsın
+    if(localStorage.getItem("panel_ok")==="1"){
+      // İstersen otomatik açtırma, şimdilik kapalı bırakıyorum.
+    }
   </script>
 </body>
-</html>
+      </html>
